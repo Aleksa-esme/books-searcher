@@ -1,0 +1,17 @@
+.main {
+    margin: 30px;
+}
+
+.quantity {
+    font-weight: 400;
+    font-size: 0.8rem;
+    line-height: 1;
+    color: darkgrey;
+    margin-bottom: 20px;
+}
+
+.books {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 20px;
+}

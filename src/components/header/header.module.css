@@ -1,0 +1,31 @@
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #f3c54c;
+    /* background: url('../../assets/images/book.webp') no-repeat center; */
+    height: 400px;
+    background-size: cover;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 1.167;
+    letter-spacing: -0.01562em;
+    margin: 0 0 30px;
+    color: #53273c;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
