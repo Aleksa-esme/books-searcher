@@ -1,5 +1,5 @@
 .main {
-    margin: 30px;
+    margin: 30px 50px;
 }
 
 .quantity {
@@ -11,7 +11,7 @@
 }
 
 .books {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
 }
