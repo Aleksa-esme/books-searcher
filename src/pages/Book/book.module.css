@@ -1,0 +1,43 @@
+.header {
+    background-color: palegoldenrod;
+    height: 60px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 100px;
+}
+
+.block {
+    display: flex;
+}
+
+.image {
+    height: 480px;
+    box-shadow: 2px 2px 15px 3px lightgrey;
+}
+
+.info {
+    margin-left: 60px;
+}
+
+.about {
+    margin-top: 50px;
+}
+
+.author {
+    padding: 10px 0;
+    color: #53273c;
+}
+
+.publication {
+    display: flex;
+    gap: 10px;
+    color: darkgray;
+    padding: 10px 0 0;
+}
+
+.button {
+    margin-top: 20px !important;
+}
