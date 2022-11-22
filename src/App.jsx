@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { changeFilter } from './store/actions/actionCreator';
 import { fetchJson, API_KEY } from "./api/books";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Header } from './components/header/header';
 import { AllBooks } from './pages/AllBooks/allBooks';
+import { Book } from './pages/Book/book';
 
 import styles from './app.module.css';
 
@@ -85,6 +86,10 @@ function App() {
     return resultArray;
   };
 
+  const getBook = (key) => {
+    return books.find((book) => book.id === key);
+  }
+
   useEffect(() => {
     fetchJson(url)
       .then(data => {
@@ -96,21 +101,31 @@ function App() {
   }, [url]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={styles.app}>
-        <Header 
-          categories={getUniqueList(books, 'categories')}
-          value={value} 
-          activeFilter={activeFilter}
-          inputChange={handleInputChange} 
-          changeRequest={changeRequest} 
-          handlePressInput={handlePressInput} 
-          changeFilter={changeFilter}
-          changeSort={changeSort}
-        />
-        <AllBooks books={filterBooks(books, activeFilter)}/>
-      </div>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <div className={styles.app}>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <AllBooks 
+                  books={filterBooks(books, activeFilter)}
+                  categories={getUniqueList(books, 'categories')}
+                  alue={value} 
+                  activeFilter={activeFilter}
+                  inputChange={handleInputChange} 
+                  changeRequest={changeRequest} 
+                  handlePressInput={handlePressInput} 
+                  changeFilter={changeFilter}
+                  changeSort={changeSort}
+                />
+              } 
+            />
+            <Route path="/:key" element={<Book getBook={getBook} />} />
+          </Routes>
+        </div>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
