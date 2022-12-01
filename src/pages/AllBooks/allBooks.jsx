@@ -1,21 +1,18 @@
 import { Link } from "react-router-dom";
-import { MediaCard } from "../../components/card/card";
+import { MediaCard } from "./card/card";
 import { Header } from '../../components/header/header';
 
 import styles from './allBooks.module.css';
 
-export const AllBooks = ({ books, categories, value, activeFilter, inputChange, changeRequest, handlePressInput, changeFilter, changeSort }) => {
+export const AllBooks = ({ books, categories, value, inputChange, changeRequest, handlePressInput }) => {
     return (
         <>
             <Header 
                 categories={categories}
                 value={value} 
-                activeFilter={activeFilter}
                 inputChange={inputChange} 
                 changeRequest={changeRequest} 
                 handlePressInput={handlePressInput} 
-                changeFilter={changeFilter}
-                changeSort={changeSort}
             />
             <main className={styles.main}>
                 <p className={styles.quantity}>Found: {books.length}</p>

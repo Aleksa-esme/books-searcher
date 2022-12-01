@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 
@@ -33,21 +33,24 @@ export const Book = ({ getBook }) => {
                     />}
                     <div className={styles.info}>
                         <h1>{book.volumeInfo.title}</h1>
-                        <p className={styles.author}>{book.volumeInfo.authors}</p>
+                        {book.volumeInfo.authors && <p className={styles.author}>{book.volumeInfo.authors}</p>}
                         <p>{book.volumeInfo.categories}</p>
                         <div className={styles.publication}>
-                            <p>{book.volumeInfo.publisher}</p>
-                            <p>{book.volumeInfo.publishedDate}</p>
+                            {book.volumeInfo.publisher && <p>{book.volumeInfo.publisher}</p>}
+                            {book.volumeInfo.publishedDate && <p>{book.volumeInfo.publishedDate}</p>}
                         </div>
-                        <p>Количество страниц: {book.volumeInfo.pageCount}</p>
+                        {book.volumeInfo.pageCount && <p>Pages: {book.volumeInfo.pageCount}</p>}
                         {/* если нет фрагмента то сделать disabled */}
-                        <Button variant="contained" startIcon={<MenuBookIcon />} size='large' className={styles.button} >Читать ознакомительный фрагмент</Button>
+                        <Button variant="contained" startIcon={<MenuBookIcon />} size='large' className={styles.button}>Read introductory snippet</Button>
                         <p>{book.volumeInfo.maturityRating}</p>
                     </div>
                 </div>
                 <div className={styles.about}>
-                    <p>О книге:</p>
-                    <p>{book.volumeInfo.description}</p>
+                    <p>About:</p>
+                    {book.volumeInfo.description
+                        ? <p>{book.volumeInfo.description}</p>
+                        : <p>No description</p>
+                    }
                 </div>
             </div>
         </>

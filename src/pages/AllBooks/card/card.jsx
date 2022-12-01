@@ -1,9 +1,4 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Grow from '@mui/material/Grow';
-
+import {Card, CardContent, CardMedia, Typography, Grow} from '@mui/material';
 import styles from './card.module.css';
 
 export const MediaCard = ({ image, category, title, author }) => {

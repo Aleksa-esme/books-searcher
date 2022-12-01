@@ -1,18 +1,30 @@
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
+import { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeCategory, changeSort } from '../../store/actions/actionCreator';
+import { selectCategory, selectSortBy, selectSortFilters } from '../../store/selectors';
+import { TextField, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
 import { Input } from '../input/input';
 
 import styles from './header.module.css';
 
-const SORT = [
-    'relevance',
-    'newest'
-]
+export const Header = ({ inputChange, value, changeRequest, handlePressInput, categories }) => {
+    const dispatch = useDispatch();
 
-export const Header = ({ inputChange, value, changeRequest, handlePressInput, categories, changeFilter, changeSort }) => {
-    return (
+    const category = useSelector(selectCategory);
+    const sortFilters = useSelector(selectSortFilters);
+    const sortBy = useSelector(selectSortBy);
+
+    
+    const changeActiveFilter = useCallback((value) => {
+        dispatch(changeCategory(value));
+    }, [dispatch]);
+    
+    const changeActiveSort = useCallback((value) => {
+        dispatch(changeSort(value));
+    }, [dispatch]);
+    
+      return (
         <header className={styles.header}>
             <div className={styles.content}>
                 <h1 className={styles.title}>Search for books</h1>
@@ -37,8 +49,8 @@ export const Header = ({ inputChange, value, changeRequest, handlePressInput, ca
                     }}
                 />
                 <div className={styles.filters}>
-                    <Input label='Categories' menu={categories} changeFunc={changeFilter} />
-                    <Input label='Sorting by' menu={SORT} changeFunc={changeSort} />
+                    <Input label='Categories' menu={categories} changeFunc={changeActiveFilter} filter={category} />
+                    <Input label='Sorting by' menu={sortFilters} changeFunc={changeActiveSort} filter={sortBy} />
                 </div>
             </div>
         </header>
