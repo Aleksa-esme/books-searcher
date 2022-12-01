@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { changeFilter } from './store/actions/actionCreator';
-import { fetchJson, API_KEY } from "./api/books";
+import { useSelector, useDispatch } from 'react-redux';
+import { selectBooks, selectBooksLoading, selectCategory, selectSortBy } from './store/selectors';
+import { getAllBooks } from './store/middlewares/getBooks';
+import { CircularProgress } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AllBooks } from './pages/AllBooks/allBooks';
 import { Book } from './pages/Book/book';
@@ -32,43 +33,33 @@ const theme = createTheme({
   },
 });
 
-
 function App() {
+  const dispatch = useDispatch();
+
+  const books = useSelector(selectBooks);
+  const loading = useSelector(selectBooksLoading);
+  const category = useSelector(selectCategory);
+  const sort = useSelector(selectSortBy);
+
   const [value, setValue] = useState('');
   const [request, setRequest] = useState('');
-  const [sortBy, setSortBy] = useState('relevance');
-  const [books, setBooks] = useState([]);
-  const [activeFilter, setActiveFilter] = useState('All');
 
   console.log(books)
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${request}&maxResults=40&printType=books&orderBy=${sortBy}&key=${API_KEY}`;
 
-  const changeRequest = (value) => {
-    return setRequest(value);
-  }
-
-  const handlePressInput = ({ code }) => {
-    if (code === "Enter") changeRequest(value);
-  };
-
-  const handleInputChange = (value) => {
-    return setValue(value);
-  }
-
-  const changeFilter = (value) => {
-    return setActiveFilter(value);
-  }
-
-  const changeSort = (value) => {
-    return setSortBy(value);
-  }
+  const requestBooks = useCallback((request, sort) => {
+    dispatch(getAllBooks(request, sort));
+  }, [dispatch]);
+  
+  useLayoutEffect(() => {
+    requestBooks(request, sort);
+  }, [request, requestBooks, sort]);
 
   const filterBooks = (books, activeFilter) => {
     switch (activeFilter) {
       case 'All':
         return books;
       case activeFilter:
-        return books.filter(book => book.volumeInfo.categories == activeFilter);
+        return books.filter(book => String(book.volumeInfo.categories) === activeFilter);
       default: 
         return books;
     }
@@ -86,21 +77,29 @@ function App() {
     return resultArray;
   };
 
-  const getBook = (key) => {
+  const getBook = key => {
     return books.find((book) => book.id === key);
   }
 
-  useEffect(() => {
-    fetchJson(url)
-      .then(data => {
-        if (data.totalItems > 0) {
-          setBooks(data.items);
-          setActiveFilter('All')
-        } else console.log('no books');
-      });
-  }, [url]);
+  const changeRequest = value => {
+    setRequest(value)
+    return requestBooks(request, sort);
+  }
 
-  return (
+  const handlePressInput = ({ code }) => {
+    if (code === "Enter") {
+      changeRequest(value);
+      requestBooks(request, sort);
+    };
+  };
+
+  const handleInputChange = value => {
+    return setValue(value);
+  }
+
+  if (loading) {
+    return <CircularProgress />;
+  } else return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <div className={styles.app}>
@@ -109,15 +108,12 @@ function App() {
               path="/" 
               element={
                 <AllBooks 
-                  books={filterBooks(books, activeFilter)}
+                  books={filterBooks(books, category)}
                   categories={getUniqueList(books, 'categories')}
-                  alue={value} 
-                  activeFilter={activeFilter}
+                  value={value} 
                   inputChange={handleInputChange} 
                   changeRequest={changeRequest} 
                   handlePressInput={handlePressInput} 
-                  changeFilter={changeFilter}
-                  changeSort={changeSort}
                 />
               } 
             />
@@ -128,9 +124,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
-// export default connect(({ filter }) => ({
-//   filter
-// }), { changeFilter })(App);
 
 export default App;

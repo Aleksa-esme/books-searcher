@@ -11,7 +11,7 @@
 }
 
 .books {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(9, 1fr);
 }

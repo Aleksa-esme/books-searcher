@@ -1,15 +1,9 @@
-import { useState } from 'react';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-
+import { FormControl, Select, MenuItem } from '@mui/material';
 import styles from './input.module.css';
 
-export const Input = ({ label, menu, changeFunc }) => {
-  const [filter, setFilter] = useState(menu[0]);
-
+export const Input = ({ label, menu, changeFunc, filter }) => {
+  
   const handleChange = (event) => {
-    setFilter(event.target.value);
     changeFunc(event.target.value);
   };
   
