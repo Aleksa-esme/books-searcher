@@ -11,12 +11,12 @@ export const Input = ({ label, menu, changeFunc, filter }) => {
     <div className={styles.form}>
       <p className={styles.label}>{label}</p>
       <FormControl sx={{ m: 1, minWidth: 260, mr: 0, ml: 0, backgroundColor: 'white', borderRadius: 1 }} fullWidth>
-        <Select
+        <Select className={styles.input}
           inputProps={{ 'aria-label': 'Without label' }}
           value={filter}
           onChange={handleChange}
         >
-          { menu.map((el, index) => <MenuItem key={index} value={el}>{el}</MenuItem>) }
+          { menu.map((el, index) => <MenuItem className={styles.inputBla} key={index} value={el}>{el}</MenuItem>) }
         </Select>
       </FormControl>
     </div>

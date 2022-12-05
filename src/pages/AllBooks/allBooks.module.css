@@ -13,5 +13,30 @@
 .books {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+}
+
+@media (max-width: 1440px) {
+    .books {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .books {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .books {
+        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:425px) {
+    .books {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

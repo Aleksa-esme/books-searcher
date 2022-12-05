@@ -10,28 +10,28 @@ import { Book } from './pages/Book/book';
 
 import styles from './app.module.css';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#815166',
-      light: '#b17e94',
-      dark: '#53273c',
-    },
-    secondary: {
-      light: '#fff87d',
-      main: '#f3c54c',
-      contrastText: '#bd9515',
-    },
-    custom: {
-      light: '#815166',
-      main: '#815166',
-      dark: '#815166',
-      contrastText: '#1c1933',
-    },
-    contrastThreshold: 3,
-    tonalOffset: 0.2,
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#815166',
+//       light: '#b17e94',
+//       dark: '#53273c',
+//     },
+//     secondary: {
+//       light: '#fff87d',
+//       main: '#f3c54c',
+//       contrastText: '#bd9515',
+//     },
+//     custom: {
+//       light: '#815166',
+//       main: '#815166',
+//       dark: '#815166',
+//       contrastText: '#1c1933',
+//     },
+//     contrastThreshold: 3,
+//     tonalOffset: 0.2,
+//   },
+// });
 
 function App() {
   const dispatch = useDispatch();
@@ -101,7 +101,7 @@ function App() {
     return <CircularProgress />;
   } else return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <div className={styles.app}>
           <Routes>
             <Route 
@@ -120,7 +120,7 @@ function App() {
             <Route path="/:key" element={<Book getBook={getBook} />} />
           </Routes>
         </div>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </BrowserRouter>
   );
 }
