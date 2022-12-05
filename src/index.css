@@ -5,7 +5,12 @@
   font-family: "Roboto","Helvetica","Arial",sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 :root {
   --white: #fff;
   --black: #000;
+  --main: #1565c0;
 }

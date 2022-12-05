@@ -22,7 +22,7 @@
     line-height: 1.167;
     letter-spacing: -0.01562em;
     margin: 0 0 30px;
-    color: #53273c;
+    color: var(--main);
 }
 
 .filters {
@@ -31,6 +31,36 @@
 }
 
 .button:hover {
-    color: #53273c;
+    color: var(--main);
     cursor: pointer;
+}
+
+.imageLink {
+    font-size: 8px;
+    align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+    .header {
+        /* background: url('../../assets/images/books.webp') no-repeat center; */
+        height: 320px;
+    }
+    .title {
+        font-size: 2.5rem;
+        margin: 0 0 20px;
+    }
+    .filters {
+        flex-direction: column;
+        gap: unset;
+        margin-top: 6px;
+    }
+}
+
+@media (max-width: 425px) {
+    .content {
+        padding: 20px;
+    }
+    .title {
+        font-size: 2rem;
+    }
 }

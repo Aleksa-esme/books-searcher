@@ -52,6 +52,7 @@ export const Header = ({ inputChange, value, changeRequest, handlePressInput, ca
                     <Input label='Categories' menu={categories} changeFunc={changeActiveFilter} filter={category} />
                     <Input label='Sorting by' menu={sortFilters} changeFunc={changeActiveSort} filter={sortBy} />
                 </div>
+                <p className={styles.imageLink}>Изображение от <a href="https://ru.freepik.com/free-photo/beautiful-arrangement-of-different-books_12892753.htm#query=%D0%B1%D0%B8%D0%B1%D0%BB%D0%B8%D0%BE%D1%82%D0%B5%D0%BA%D0%B0&position=49&from_view=search&track=sph">Freepik</a></p>
             </div>
         </header>
     );

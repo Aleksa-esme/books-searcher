@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Button } from '@mui/material';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-
 
 import styles from './book.module.css';
 
@@ -21,9 +21,22 @@ import styles from './book.module.css';
 export const Book = ({ getBook }) => {
     const { key } = useParams();
     const book = getBook(key);
+    const navigate = useNavigate();
+
+    const toPreviousPage = () => {
+        navigate(-1);
+    }
+
     return (
         <>
-            <div className={styles.header} />
+            <div className={styles.header}>
+            <Button 
+                className={styles.buttonBack}
+                variant="contained" 
+                startIcon={<KeyboardBackspaceIcon />} 
+                onClick={toPreviousPage}
+            />
+            </div>
             <div className={styles.content}>
                 <div className={styles.block}>
                     {<img 
@@ -32,7 +45,7 @@ export const Book = ({ getBook }) => {
                         className={styles.image}
                     />}
                     <div className={styles.info}>
-                        <h1>{book.volumeInfo.title}</h1>
+                        <h1 className={styles.title}>{book.volumeInfo.title}</h1>
                         {book.volumeInfo.authors && <p className={styles.author}>{book.volumeInfo.authors}</p>}
                         <p>{book.volumeInfo.categories}</p>
                         <div className={styles.publication}>
@@ -41,7 +54,7 @@ export const Book = ({ getBook }) => {
                         </div>
                         {book.volumeInfo.pageCount && <p>Pages: {book.volumeInfo.pageCount}</p>}
                         {/* если нет фрагмента то сделать disabled */}
-                        <Button variant="contained" startIcon={<MenuBookIcon />} size='large' className={styles.button}>Read introductory snippet</Button>
+                        <Button variant="contained" startIcon={<MenuBookIcon />} size='large' className={styles.button}>Read fragment</Button>
                         <p>{book.volumeInfo.maturityRating}</p>
                     </div>
                 </div>
