@@ -1,42 +1,42 @@
 .main {
-    margin: 30px 50px;
+  margin: 30px 50px;
 }
 
 .quantity {
-    font-weight: 400;
-    font-size: 0.8rem;
-    line-height: 1;
-    color: darkgrey;
-    margin-bottom: 20px;
+  font-weight: 400;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: darkgrey;
+  margin-bottom: 20px;
 }
 
 .books {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(6, 1fr);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 @media (max-width: 1440px) {
-    .books {
-        grid-template-columns: repeat(5, 1fr);
-    }
+  .books {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 @media (max-width: 1024px) {
-    .books {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .books {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-    .books {
-        gap: 1rem;
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .books {
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width:425px) {
-    .books {
-        grid-template-columns: repeat(1, 1fr);
-    }
+  .books {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

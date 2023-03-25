@@ -1,31 +1,33 @@
 .form {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .label {
-    color: var(--main);
-    font-weight: 600;
-    width: 120px;
+  color: var(--main);
+  font-weight: 600;
+  width: 120px;
 }
 
 @media (max-width: 768px) {
-    .form {
-        display: flex;
-        align-items: center;
-        margin-top: unset;
-    }
-    .input div{
-        padding: 12px ;
-    }
+  .form {
+    display: flex;
+    align-items: center;
+    margin-top: unset;
+  }
+
+  .input div{
+    padding: 12px ;
+  }
 }
 
 @media (max-width: 425px) {
-    .form {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .input div{
-        padding: 8px 12px ;
-    }
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .input div{
+    padding: 8px 12px ;
+  }
 }
