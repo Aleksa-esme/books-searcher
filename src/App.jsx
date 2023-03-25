@@ -6,6 +6,7 @@ import { getAllBooks } from './store/middlewares/getBooks';
 import { CircularProgress } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AllBooks } from './pages/AllBooks/allBooks';
+import { ErrorBoundary } from './utils/errorBoundary';
 import { Book } from './pages/Book/book';
 
 import styles from './app.module.css';
@@ -117,7 +118,7 @@ function App() {
                 />
               } 
             />
-            <Route path="/:key" element={<Book getBook={getBook} />} />
+            <Route path="/:key" element={<ErrorBoundary><Book getBook={getBook} /></ErrorBoundary>} />
           </Routes>
         </div>
       {/* </ThemeProvider> */}

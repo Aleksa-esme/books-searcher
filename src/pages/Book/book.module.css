@@ -1,109 +1,111 @@
 .header {
-    width: 100%;
+  width: 100%;
 }
 
 .buttonBack {
-    width: 100%;
-    border-radius: unset !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    padding: 16px !important;
+  width: 100%;
+  border-radius: unset !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  padding: 16px !important;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    padding: 50px 100px;
-    width: 100%;
-    max-width: 1160px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 100px;
+  width: 100%;
+  max-width: 1160px;
 }
 
 .block {
-    display: flex;
+  display: flex;
 }
 
 .image {
-    height: 480px;
-    box-shadow: 2px 2px 15px 3px lightgrey;
+  height: 480px;
+  box-shadow: 2px 2px 15px 3px lightgrey;
 }
 
 .info {
-    margin-left: 60px;
+  margin-left: 60px;
 }
 
 .about {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .author {
-    padding: 10px 0;
-    color: var(--main);
+  padding: 10px 0;
+  color: var(--main);
 }
 
 .publication {
-    display: flex;
-    gap: 10px;
-    color: darkgray;
-    padding: 10px 0 0;
+  display: flex;
+  gap: 10px;
+  color: darkgray;
+  padding: 10px 0 0;
 }
 
 .button {
-    margin-top: 20px !important;
+  margin-top: 20px !important;
 }
 
 @media (max-width: 1024px) {
-    .content {
-        padding: 50px;
-    }
+  .content {
+    padding: 50px;
+  }
 }
 
 @media (max-width: 768px) {
-    .content {
-        padding: 50px;
-    }
-    .image {
-        height: 320px;
-    }
+  .content {
+    padding: 50px;
+  }
+
+  .image {
+    height: 320px;
+  }
     
-    .info {
-        margin-left: 30px;
-    }
+  .info {
+    margin-left: 30px;
+  }
     
-    .about {
-        margin-top: 40px;
-    }
+  .about {
+    margin-top: 40px;
+  }
     
-    .title {
-        font-size: 26px;
-    }
+  .title {
+    font-size: 26px;
+  }
 }
 
 @media (max-width: 425px) {
-    .content {
-        padding: 20px;
-    }
+  .content {
+    padding: 20px;
+  }
 
-    .block {
-        flex-direction: column;
-        align-items: center;
-    }
-    .image {
-        height: 320px;
-    }
+  .block {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image {
+    height: 320px;
+  }
     
-    .info {
-        margin-left: unset;
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .info {
+    margin-left: unset;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
     
-    .about {
-        margin-top: 40px;
-    }
+  .about {
+    margin-top: 40px;
+  }
     
-    .title {
-        font-size: 26px;
-    }
+  .title {
+    font-size: 26px;
+  }
 }
