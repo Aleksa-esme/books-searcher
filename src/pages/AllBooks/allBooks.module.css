@@ -8,6 +8,15 @@
   line-height: 1;
   color: darkgrey;
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.request {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--main);
+  text-transform: uppercase;
 }
 
 .books {

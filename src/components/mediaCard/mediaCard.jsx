@@ -1,4 +1,4 @@
-import {Card, CardContent, CardMedia, Typography, Grow} from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Grow } from '@mui/material';
 import styles from './mediaCard.module.css';
 
 export const MediaCard = ({ image, category, title, author }) => {
@@ -9,8 +9,8 @@ export const MediaCard = ({ image, category, title, author }) => {
           <CardMedia
             className={styles.image}
             component="img"
-            image={image}
-            alt="green iguana"
+            image={image ? image : require('../../assets/images/stub.webp')}
+            alt={title}
           />
         </div>
         <CardContent className={styles.textBlock}>

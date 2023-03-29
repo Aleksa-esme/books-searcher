@@ -1,10 +1,9 @@
-import { useState, useLayoutEffect, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectBooks, selectBooksLoading, selectCategory, selectSortBy } from './store/selectors';
-import { getAllBooks } from './store/middlewares/getBooks';
-import { CircularProgress } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { selectBooks, selectCategory, selectSortBy } from './store/selectors';
+import { getAllBooks } from './store/middlewares/getAllBooks';
+// import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AllBooks } from './pages/AllBooks/allBooks';
 import { ErrorBoundary } from './utils/errorBoundary';
 import { Book } from './pages/Book/book';
@@ -38,22 +37,18 @@ function App() {
   const dispatch = useDispatch();
 
   const books = useSelector(selectBooks);
-  const loading = useSelector(selectBooksLoading);
   const category = useSelector(selectCategory);
   const sort = useSelector(selectSortBy);
 
+  const textRef = useRef();
   const [value, setValue] = useState('');
-  const [request, setRequest] = useState('');
-
-  console.log(books)
 
   const requestBooks = useCallback((request, sort) => {
-    dispatch(getAllBooks(request, sort));
+    if (request.length > 0) {
+      dispatch(getAllBooks(request, sort));
+    }
+    setValue(request);
   }, [dispatch]);
-  
-  useLayoutEffect(() => {
-    requestBooks(request, sort);
-  }, [request, requestBooks, sort]);
 
   const filterBooks = (books, activeFilter) => {
     switch (activeFilter) {
@@ -68,39 +63,30 @@ function App() {
 
   const getUniqueList = (array, prop) => {
     const newArray = [];
+    
     array.forEach(el => {
       if (el.volumeInfo[prop] !== undefined) {
         return newArray.push(el.volumeInfo[prop])
       };
     });
+    
     let resultArray = [...new Set(newArray.flat().sort())];
     resultArray.unshift('All');
+    
     return resultArray;
   };
 
-  const getBook = key => {
-    return books.find((book) => book.id === key);
-  }
+  const getBook = key => books.find(book => book.id === key);
 
-  const changeRequest = value => {
-    setRequest(value)
-    return requestBooks(request, sort);
-  }
-
+  const changeRequest = () => requestBooks(textRef.current.value, sort);
+  
   const handlePressInput = ({ code }) => {
-    if (code === "Enter") {
-      changeRequest(value);
-      requestBooks(request, sort);
+    if (code === 'Enter') {
+      changeRequest();
     };
   };
 
-  const handleInputChange = value => {
-    return setValue(value);
-  }
-
-  if (loading) {
-    return <CircularProgress />;
-  } else return (
+  return (
     <BrowserRouter>
       {/* <ThemeProvider theme={theme}> */}
         <div className={styles.app}>
@@ -111,10 +97,10 @@ function App() {
                 <AllBooks 
                   books={filterBooks(books, category)}
                   categories={getUniqueList(books, 'categories')}
-                  value={value} 
-                  inputChange={handleInputChange} 
                   changeRequest={changeRequest} 
                   handlePressInput={handlePressInput} 
+                  inputRef={textRef}
+                  value={value}
                 />
               } 
             />

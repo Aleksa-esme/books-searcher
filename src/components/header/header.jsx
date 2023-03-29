@@ -8,7 +8,7 @@ import { Input } from '../input/input';
 
 import styles from './header.module.css';
 
-export const Header = ({ inputChange, value, changeRequest, handlePressInput, categories }) => {
+export const Header = ({ changeRequest, handlePressInput, categories, inputRef }) => {
   const dispatch = useDispatch();
 
   const category = useSelector(selectCategory);
@@ -34,15 +34,14 @@ export const Header = ({ inputChange, value, changeRequest, handlePressInput, ca
           variant="outlined"
           size='small'
           fullWidth
-          value={value}
-          onChange = {(e) => inputChange(e.target.value)}
+          inputRef={inputRef}
           onKeyPress={handlePressInput}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <SearchIcon 
-                    className={styles.button}
-                    onClick={() => changeRequest(value)}
+                  className={styles.button}
+                  onClick={() => changeRequest(inputRef.current.value)}
                 />
               </InputAdornment>
             ),

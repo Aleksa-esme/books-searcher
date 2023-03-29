@@ -1,7 +1,6 @@
 // TODO add apikey to github secrets before deploy
 export const API_KEY = process.env.REACT_APP_APIKEY;
 
-
 export const CHANGE_CATEGORY = 'FILTERS::CHANGE_CATEGORY';
 export const CHANGE_SORT = 'FILTERS::CHANGE_SORT';
 
@@ -16,3 +15,4 @@ export const STATUSES = {
   SUCCESS: 2,
   FAILURE: 3,
 }
+
