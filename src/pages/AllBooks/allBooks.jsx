@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectBooksLoading } from '../../store/selectors';
-import { MediaCard } from "../../components/mediaCard/mediaCard";
-import { Header } from '../../components/header/header';
-import { Loader } from '../../components/loader/loader';
-
+import { MediaCard, Header, Loader } from '../../components';
+import { ErrorBoundary } from '../../utils/errorBoundary';
 import styles from './allBooks.module.css';
 
 export const AllBooks = ({ books, categories, changeRequest, handlePressInput, inputRef, value }) => {
@@ -25,17 +23,16 @@ export const AllBooks = ({ books, categories, changeRequest, handlePressInput, i
         </p>
           <div className={styles.books}>
             {books.map(book => (
-              <Link 
-                to={`/${book.id}`} 
-                key={book.id} 
-              >
-								<MediaCard 
-									image={book.volumeInfo.imageLinks?.thumbnail}
-									category={book.volumeInfo.categories}
-									author={book.volumeInfo.authors}
-									title={book.volumeInfo.title}
-								/>
-              </Link>
+              <ErrorBoundary key={book.id} >
+                <Link to={`/${book.id}`} >
+                  <MediaCard 
+                    image={book.volumeInfo.imageLinks?.thumbnail}
+                    category={book.volumeInfo.categories}
+                    author={book.volumeInfo.authors}
+                    title={book.volumeInfo.title}
+                  />
+                </Link>
+              </ErrorBoundary>
             ))}
           </div>
       </main>

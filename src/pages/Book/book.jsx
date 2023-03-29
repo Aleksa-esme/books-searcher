@@ -1,8 +1,8 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-
 import styles from './book.module.css';
 
 // обложка маленькая и большая при открытии
@@ -27,17 +27,24 @@ export const Book = ({ getBook }) => {
     navigate(-1);
   }
 
+  useEffect(() => {
+    if (!book) {
+      navigate('/');
+    }
+  }, [book, navigate])
+
   return (
     <>
       <div className={styles.header}>
         <Button 
           className={styles.buttonBack}
           variant="contained" 
-          startIcon={<KeyboardBackspaceIcon />} 
+          startIcon={<KeyboardBackspaceIcon/>} 
           onClick={toPreviousPage}
         />
       </div>
-      <div className={styles.content}>
+      {book && (
+        <div className={styles.content}>
           <div className={styles.block}>
             {<img 
               src={book.volumeInfo.imageLinks?.thumbnail} 
@@ -65,7 +72,8 @@ export const Book = ({ getBook }) => {
               : <p>No description</p>
             }
           </div>
-      </div>
+        </div>
+      )}
    </>
   )
 }

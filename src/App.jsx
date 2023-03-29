@@ -1,13 +1,11 @@
 import { useState, useCallback, useRef } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { AllBooks, Book } from './pages';
 import { selectBooks, selectCategory, selectSortBy } from './store/selectors';
 import { getAllBooks } from './store/middlewares/getAllBooks';
-// import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { AllBooks } from './pages/AllBooks/allBooks';
 import { ErrorBoundary } from './utils/errorBoundary';
-import { Book } from './pages/Book/book';
-
+// import { ThemeProvider, createTheme } from '@mui/material/styles';
 import styles from './app.module.css';
 
 // const theme = createTheme({
